@@ -1,6 +1,5 @@
 #!/bin/bash -e
 
-url=$URL
 branch=$DEPLOY_BRANCH
 
 if [ -z "$PRIVATE_KEY" ]; then
@@ -8,9 +7,9 @@ if [ -z "$PRIVATE_KEY" ]; then
 	exit 1
 fi
 
-ssh_host=$(echo $url | sed 's/.*@//' | sed 's/[:/].*//')
+ssh_host=$(echo $URL | sed 's/.*@//' | sed 's/[:/].*//')
 if [ -z "$ssh_host" ]; then
-	>&2 echo "Usage: $0 <user@git.host:project | ssh://user@git.host:port/project> [<branch>]"
+	>&2 echo "Set URL environment variable e.g.: <user@git.host:project | ssh://user@git.host:port/project>"
 	exit 1
 fi
 
