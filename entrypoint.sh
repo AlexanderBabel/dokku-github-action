@@ -1,7 +1,5 @@
 #!/bin/bash -e
 
-branch=$DEPLOY_BRANCH
-
 if [ -z "$PRIVATE_KEY" ]; then
 	>&2 echo "Set PRIVATE_KEY environment variable"
 	exit 1
@@ -23,4 +21,4 @@ echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 ssh-keyscan -H $ssh_port "$ssh_host" >> ~/.ssh/known_hosts
 
-git push $URL ${CI_COMMIT_SHA:-HEAD}:refs/heads/${branch:-master} $([ -z "$DISABLE_FORCE_PUSH" ] && echo --force)
+git push $URL ${CI_COMMIT_SHA:-HEAD}:refs/heads/${DEPLOY_BRANCH:-master} $([ -z "$DISABLE_FORCE_PUSH" ] && echo --force)
