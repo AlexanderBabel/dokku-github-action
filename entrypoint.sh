@@ -19,11 +19,10 @@ chmod 600 "$SSH_PATH/deploy_key.pub"
 eval $(ssh-agent)
 ssh-add "$SSH_PATH/deploy_key"
 
-ssh-keyscan -t rsa $HOST >> "$SSH_PATH/known_hosts"
+ssh-keyscan $HOST >> "$SSH_PATH/known_hosts"
 
 git checkout $DEPLOY_BRANCH
 
 echo "The deploy is starting"
 
-GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${PORT-22}" git pull dokku@$HOST:$PROJECT $DEPLOY_BRANCH:master
 GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${PORT-22}" git push dokku@$HOST:$PROJECT $DEPLOY_BRANCH:master
