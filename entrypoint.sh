@@ -3,8 +3,8 @@
 url=$URL
 branch=$DEPLOY_BRANCH
 
-if [ -z "$SSH_PRIVATE_KEY" ]; then
-	>&2 echo "Set SSH_PRIVATE_KEY environment variable"
+if [ -z "$PRIVATE_KEY" ]; then
+	>&2 echo "Set PRIVATE_KEY environment variable"
 	exit 1
 fi
 
@@ -20,7 +20,7 @@ if [[ $url =~ ^ssh://[^/]+:([0-9]+) ]]; then
 fi
 
 mkdir -p ~/.ssh
-echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 ssh-keyscan -H $ssh_port "$ssh_host" >> ~/.ssh/known_hosts
 
