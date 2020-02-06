@@ -14,7 +14,7 @@ if [ -z "$ssh_host" ]; then
 fi
 
 ssh_port=
-if [[ $url =~ ^ssh://[^/]+:([0-9]+) ]]; then
+if [[ $URL =~ ^ssh://[^/]+:([0-9]+) ]]; then
         ssh_port="-p ${BASH_REMATCH[1]}"
 fi
 
