@@ -20,6 +20,6 @@ mkdir -p ~/.ssh
 echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 ssh-keyscan -H $ssh_port "$ssh_host" >> ~/.ssh/known_hosts
-echo ~/.ssh/known_hosts
+cat ~/.ssh/known_hosts
 
-GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${ssh_port-22}" git push $URL ${CI_COMMIT_SHA:-HEAD}:refs/heads/${DEPLOY_BRANCH:-master} $([ -z "$DISABLE_FORCE_PUSH" ] && echo --force)
+GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${ssh_port}" git push $URL ${CI_COMMIT_SHA:-HEAD}:refs/heads/${DEPLOY_BRANCH:-master} $([ -z "$DISABLE_FORCE_PUSH" ] && echo --force)
