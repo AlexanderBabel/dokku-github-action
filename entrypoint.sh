@@ -25,4 +25,4 @@ git checkout $DEPLOY_BRANCH
 
 echo "The deploy is starting"
 
-GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${PORT-22}" git push dokku@$HOST:$PROJECT $DEPLOY_BRANCH:master
+GIT_SSH_COMMAND="ssh -v -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${PORT-22}" git push dokku@$HOST:$PROJECT $DEPLOY_BRANCH:master
