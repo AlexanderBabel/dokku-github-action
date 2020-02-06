@@ -19,6 +19,5 @@ fi
 mkdir -p ~/.ssh
 echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
-ssh-add ~/.ssh/id_rsa
 
-GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${ssh_port}" git push $URL ${CI_COMMIT_SHA:-HEAD}:refs/heads/${DEPLOY_BRANCH:-master} $([ -z "$DISABLE_FORCE_PUSH" ] && echo --force)
+GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${ssh_port} -i ~/.ssh/id_rsa" git push $URL ${CI_COMMIT_SHA:-HEAD}:refs/heads/${DEPLOY_BRANCH:-master} $([ -z "$DISABLE_FORCE_PUSH" ] && echo --force)
