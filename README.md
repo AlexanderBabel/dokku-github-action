@@ -22,14 +22,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Dokku deploy
-      uses: vitalyliber/dokku-github-action@v3.0
+      uses: AlexanderBabel/dokku-github-action@v1.0
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
-        HOST: casply.com
-        PROJECT: kawaii
+        URL: dokku@example.com:my-app
 ```
 
 ### Required Secrets
@@ -37,16 +35,13 @@ jobs:
 You'll need to provide some secrets to use the action.
 
 - **PRIVATE_KEY**: Your SSH private key.
-- **PUBLIC_KEY**: Your SSH public key.
 
 ### Required Environments
 
 You'll need to provide some env to use the action.
 
-- **HOST**: The host the action will SSH to run the git push command. ie, `your.site.com`.
-- **PROJECT**: The project is Dokku project name.
+- **URL**: The ssh url to your dokku server. ie, `dokku@your.site.com:project-name`.
 - **BRANCH**: Repository branch that should be used for deploy, `master` is set by default.
-- **PORT**: Port of the sshd listen to, `22` is set by default.
 
 ## License
 

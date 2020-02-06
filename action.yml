@@ -1,12 +1,12 @@
 name: 'Dokku Github Action'
 description: 'Deploy applications to Dokku'
-author: 'Vitaly Liber'
+author: 'Alexander Babel'
 inputs: 
   private_key:
     description: "This will be used for ssh authentication. You can find it in home/.ssh/id_rsa"
     required: true
-  public_key:
-    description: "This will be used for ssh authentication. You can find it in id_rsa.pub"
+  url:
+    description: "TThis is the url to your dokku server."
     required: true
 outputs:
   status:
